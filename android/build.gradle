@@ -2,14 +2,14 @@ group 'com.linecorp.flutter_line_sdk'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.21'
+    ext.kotlin_version = '1.9.23'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.android.tools.build:gradle:8.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 
@@ -26,6 +26,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    buildFeatures {
+        buildConfig true
+    }
     if (project.android.hasProperty('namespace')) {
         namespace 'com.linecorp.flutter_line_sdk'
     }
@@ -35,7 +38,7 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdk 24
+        minSdk 21
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-proguard-rules.pro'
     }
@@ -54,7 +57,7 @@ android {
 }
 
 dependencies {
-    implementation('com.linecorp.linesdk:linesdk:5.9.1') {
+    implementation('com.linecorp.linesdk:linesdk:5.8.1') {
         exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
         exclude group: 'androidx.lifecycle', module: 'lifecycle-extensions'
     }
